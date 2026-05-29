@@ -1,0 +1,720 @@
+import React, { useEffect, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import {
+  ExternalLink,
+  Github,
+  Linkedin,
+  Mail,
+  Sparkles,
+} from 'lucide-react';
+import './styles.css';
+
+const profile = {
+  name: 'Vera Vekiou',
+  role: '',
+  email: 'vvekiou@gmail.com',
+  github: 'https://github.com/Veravekiou',
+  linkedin: 'https://www.linkedin.com/in/varvara-vekiou/',
+  cv: '',
+};
+
+const projects = [
+  {
+    title: 'PlanGo',
+    type: 'Full-stack thesis web app',
+    mediaType: 'desktop',
+    mediaLayout: 'web-layered',
+    mediaClass: 'plango-layered',
+    images: [
+      {
+        src: '/projects/plango-preview.png',
+        alt: 'PlanGo travel planning homepage with hero section and popular destinations',
+        fit: 'cover',
+        position: 'top center',
+        label: 'plango.app',
+      },
+      {
+        src: '/projects/plango-generate-trip.png',
+        alt: 'PlanGo generate trip destination step screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'generate trip',
+      },
+    ],
+    description:
+      'A PHP/MySQL travel planning web application that generates personalized itineraries, saves trips, manages user profiles, and supports route and map-based travel context.',
+    highlights: ['Personalized itineraries', 'Saved trips', 'Map context'],
+    stack: ['PHP', 'MySQL', 'JavaScript', 'PDO', 'Google APIs', 'XAMPP'],
+    impact:
+      'Shows a complete thesis-scale product with authentication, database design, itinerary generation, saved trips, API endpoints, security protections, and deployment documentation.',
+    github: 'https://github.com/Veravekiou/plango-travel-site',
+  },
+  {
+    title: 'Theatre Booking App',
+    type: 'Full-stack mobile app',
+    mediaType: 'mobile',
+    mediaLayout: 'phone-pair',
+    images: [
+      {
+        src: '/projects/theatre-home.jpg',
+        alt: 'Theatre Booking App home screen with now showing theatre production',
+        fit: 'cover',
+        position: 'top center',
+      },
+      {
+        src: '/projects/theatre-booking.jpg',
+        alt: 'Theatre Booking App seat selection and ticket booking screen',
+        fit: 'cover',
+        position: 'top center',
+      },
+    ],
+    description:
+      'A theatre booking system where users can register, browse productions, search showtimes, select seats, book tickets, and manage reservations.',
+    highlights: ['Seat selection', 'JWT auth', 'Reservations'],
+    stack: ['Expo', 'React Native', 'Express', 'JWT', 'MariaDB'],
+    impact:
+      'Shows full-stack architecture, authentication, REST APIs, database relations, and transaction-safe reservations.',
+    github: 'https://github.com/Veravekiou/theatre-booking-app',
+  },
+  {
+    title: 'Travel Agency Management System',
+    type: 'Management system',
+    mediaType: 'desktop',
+    mediaLayout: 'desktop-floating',
+    mediaClass: 'travel-floating',
+    windowLabel: 'Travel Agency System',
+    images: [
+      {
+        src: '/projects/travel-agency-dashboard.png',
+        alt: 'Travel Agency Management System dashboard with bookings and popular destinations chart',
+        fit: 'contain',
+        position: 'top center',
+      },
+    ],
+    description:
+      'A desktop booking and customer management system for organizing trips, reservations, and dashboard insights in one clean interface.',
+    highlights: ['Booking workflow', 'Customer records', 'Dashboard stats'],
+    stack: ['Java', 'FXML', 'Maven', 'JDBC'],
+    impact:
+      'Shows desktop UI development, data handling, dashboard organization, and admin-style management workflows.',
+    github: 'https://github.com/Veravekiou/travel-agency-management-system',
+  },
+  {
+    title: 'PetPlanet',
+    type: 'Frontend website',
+    mediaType: 'desktop',
+    mediaLayout: 'web-layered',
+    mediaClass: 'petplanet-layered',
+    images: [
+      {
+        src: '/projects/petplanet-home.png',
+        alt: 'PetPlanet homepage hero section with pet shop navigation',
+        fit: 'cover',
+        position: 'top center',
+        label: 'petplanet.shop',
+      },
+      {
+        src: '/projects/petplanet-products.png',
+        alt: 'PetPlanet cats products page with category cards',
+        fit: 'contain',
+        position: 'top center',
+        label: 'products',
+      },
+    ],
+    description:
+      'A responsive pet shop website with product category pages, adoption filtering, search routing, contact validation, and demo login/sign-up flow.',
+    highlights: ['Responsive pages', 'Product filters', 'Form validation'],
+    stack: ['HTML', 'CSS', 'JavaScript'],
+    impact:
+      'Shows responsive layout, multi-page frontend structure, interactive filters, form validation, and polished user flows.',
+    github: 'https://github.com/Veravekiou/PetPlanet',
+    demo: 'https://veravekiou.github.io/PetPlanet/',
+  },
+  {
+    title: 'FixMyCity',
+    type: 'Android mobile app',
+    mediaType: 'mobile',
+    mediaLayout: 'phone-pair',
+    images: [
+      {
+        src: '/projects/fixmycity-home.png',
+        alt: 'FixMyCity home dashboard with report summary and navigation',
+        fit: 'cover',
+        position: 'top center',
+      },
+      {
+        src: '/projects/fixmycity-report.png',
+        alt: 'FixMyCity submit new report form with category details and location',
+        fit: 'cover',
+        position: 'top center',
+      },
+    ],
+    description:
+      'An Android application for reporting local city issues with category selection, map-based location selection, image attachment, and submitted report viewing.',
+    highlights: ['Map location', 'Image upload', 'Firestore data'],
+    stack: ['Java', 'Android SDK', 'Firebase', 'Firestore', 'RecyclerView'],
+    impact:
+      'Shows mobile development, Firebase integration, form validation, location-based reporting, and structured Android project organization.',
+    github: 'https://github.com/Veravekiou/FixMyCity_Part2',
+  },
+];
+
+const strengths = [
+  {
+    title: 'Practical builder',
+    text: 'Turning ideas into functional projects with real features.',
+  },
+  {
+    title: 'User-focused',
+    text: 'Creating simple flows and clear digital experiences.',
+  },
+  {
+    title: 'Always improving',
+    text: 'Learning through real development work and iteration.',
+  },
+];
+
+const techStack = [
+  {
+    name: 'React',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
+    fallback: 'React',
+    delay: '0s',
+  },
+  {
+    name: 'JavaScript',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg',
+    fallback: 'JS',
+    delay: '0.16s',
+  },
+  {
+    name: 'PHP',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg',
+    fallback: 'PHP',
+    delay: '0.32s',
+  },
+  {
+    name: 'HTML',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg',
+    fallback: 'HTML',
+    delay: '0.48s',
+  },
+  {
+    name: 'CSS',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg',
+    fallback: 'CSS',
+    delay: '0.64s',
+  },
+  {
+    name: 'React Native',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg',
+    fallback: 'RN',
+    delay: '0.8s',
+  },
+  {
+    name: 'Node.js',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg',
+    fallback: 'Node',
+    delay: '0.96s',
+  },
+  {
+    name: 'Express.js',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg',
+    fallback: 'Express',
+    delay: '1.12s',
+    contrast: true,
+  },
+  {
+    name: 'MySQL',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg',
+    fallback: 'MySQL',
+    delay: '1.28s',
+  },
+  {
+    name: 'Firebase',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg',
+    fallback: 'Firebase',
+    delay: '1.44s',
+  },
+  {
+    name: 'Java',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg',
+    fallback: 'Java',
+    delay: '1.6s',
+  },
+  {
+    name: 'MariaDB',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mariadb/mariadb-original.svg',
+    fallback: 'MDB',
+    delay: '1.76s',
+  },
+  {
+    name: 'Firestore',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg',
+    fallback: 'FS',
+    delay: '1.92s',
+  },
+  {
+    name: 'Android',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/android/android-original.svg',
+    fallback: 'Android',
+    delay: '2.08s',
+  },
+  {
+    name: 'Expo',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/expo/expo-original.svg',
+    fallback: 'Expo',
+    delay: '2.24s',
+    contrast: true,
+  },
+  {
+    name: 'Git',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg',
+    fallback: 'Git',
+    delay: '2.4s',
+  },
+  {
+    name: 'JavaFX',
+    logo: '',
+    fallback: 'JFX',
+    delay: '2.56s',
+  },
+  {
+    name: 'GitHub',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg',
+    fallback: 'GH',
+    delay: '2.72s',
+    contrast: true,
+  },
+  {
+    name: 'Maven',
+    logo: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/maven/maven-original.svg',
+    fallback: 'Maven',
+    delay: '2.88s',
+  },
+];
+
+
+const heroHighlights = ['5 Projects', 'Web · Mobile · Desktop', 'Open to junior roles'];
+
+const heroFocus = ['React', 'PHP / MySQL', 'Firebase', 'Java'];
+
+const heroMiniProjects = ['PlanGo', 'Theatre Booking', 'FixMyCity'];
+
+function ContactLink({ href, icon: Icon, label }) {
+  if (!href) return null;
+
+  return (
+    <a
+      className="icon-link"
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+    >
+      <Icon size={18} aria-hidden="true" />
+      {label}
+    </a>
+  );
+}
+
+function ProjectMedia({ project, priority = false }) {
+  const images = project.images || [];
+  const backgroundImage = images[0]?.src;
+  const isWebLayered = project.mediaLayout === 'web-layered';
+  const isDesktopFloating = project.mediaLayout === 'desktop-floating';
+  const mediaClasses = [
+    'case-study-media',
+    project.mediaType || 'desktop',
+    project.mediaLayout || 'single',
+    project.mediaClass || '',
+    images.length ? 'has-image' : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
+  return (
+    <div
+      className={mediaClasses}
+      style={
+        backgroundImage
+          ? { '--project-image': `url("${backgroundImage}")` }
+          : undefined
+      }
+    >
+      {images.length ? (
+        <div className={`media-stage ${project.mediaLayout || 'single'}`}>
+          {images.map((image, imageIndex) =>
+            isWebLayered ? (
+              <div
+                className={`browser-preview shot-${imageIndex + 1}`}
+                key={image.src}
+              >
+                <div className="browser-preview-bar" aria-hidden="true">
+                  <span className="browser-dots">
+                    <i />
+                    <i />
+                    <i />
+                  </span>
+                  <span className="browser-label">
+                    {image.label || project.title.toLowerCase()}
+                  </span>
+                </div>
+                <img
+                  className={`project-image media-shot ${
+                    image.fit === 'cover' ? 'cover' : 'contain'
+                  }`}
+                  src={image.src}
+                  alt={image.alt}
+                  loading={priority && imageIndex === 0 ? undefined : 'lazy'}
+                  style={{ objectPosition: image.position || 'center' }}
+                />
+              </div>
+            ) : isDesktopFloating ? (
+              <div className="desktop-showcase" key={image.src}>
+                <div className="desktop-window-preview shot-1">
+                  <div className="desktop-window-bar" aria-hidden="true">
+                    <span className="desktop-window-title">
+                      {project.windowLabel || project.title}
+                    </span>
+                    <span className="desktop-window-controls">
+                      <i>—</i>
+                      <i>□</i>
+                      <i>×</i>
+                    </span>
+                  </div>
+                  <img
+                    className={`project-image media-shot ${
+                      image.fit === 'cover' ? 'cover' : 'contain'
+                    }`}
+                    src={image.src}
+                    alt={image.alt}
+                    loading={priority && imageIndex === 0 ? undefined : 'lazy'}
+                    style={{ objectPosition: image.position || 'center' }}
+                  />
+                </div>
+              </div>
+            ) : (
+              <img
+                className={`project-image media-shot shot-${imageIndex + 1} ${
+                  image.fit === 'cover' ? 'cover' : 'contain'
+                }`}
+                key={image.src}
+                src={image.src}
+                alt={image.alt}
+                loading={priority && imageIndex === 0 ? undefined : 'lazy'}
+                style={{ objectPosition: image.position || 'center' }}
+              />
+            ),
+          )}
+        </div>
+      ) : (
+        <div className="project-visual" aria-hidden="true">
+          <span>{project.visual}</span>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function App() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 16);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const typingPhrases = [
+    'building web apps',
+    'building mobile apps',
+    'designing clean interfaces',
+    'working with databases',
+  ];
+  const [typedText, setTypedText] = useState('');
+  const [typingIndex, setTypingIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const currentPhrase = typingPhrases[typingIndex];
+    const isPhraseComplete = !isDeleting && typedText === currentPhrase;
+    const isPhraseCleared = isDeleting && typedText === '';
+
+    const timeout = window.setTimeout(() => {
+      if (isPhraseComplete) {
+        setIsDeleting(true);
+        return;
+      }
+
+      if (isPhraseCleared) {
+        setIsDeleting(false);
+        setTypingIndex((prev) => (prev + 1) % typingPhrases.length);
+        return;
+      }
+
+      const nextText = isDeleting
+        ? currentPhrase.slice(0, typedText.length - 1)
+        : currentPhrase.slice(0, typedText.length + 1);
+
+      setTypedText(nextText);
+    }, isPhraseComplete ? 1200 : isDeleting ? 45 : 85);
+
+    return () => window.clearTimeout(timeout);
+  }, [typedText, typingIndex, isDeleting]);
+
+  const emailHref = profile.email
+    ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+        profile.email,
+      )}&su=${encodeURIComponent('Portfolio contact - Vera Vekiou')}`
+    : '';
+
+  const contactLinks = [
+    profile.email && {
+      href: emailHref,
+      icon: Mail,
+      label: 'Send email',
+    },
+    profile.github && {
+      href: profile.github,
+      icon: Github,
+      label: 'GitHub',
+    },
+    profile.linkedin && {
+      href: profile.linkedin,
+      icon: Linkedin,
+      label: 'LinkedIn',
+    },
+    profile.cv && {
+      href: profile.cv,
+      icon: ExternalLink,
+      label: 'CV',
+    },
+  ].filter(Boolean);
+
+  return (
+    <main>
+      <header className={`site-header${isScrolled ? ' is-scrolled' : ''}`}>
+        <a className="brand" href="#top" aria-label="Portfolio home">
+          <span className="brand-mark brand-word" aria-hidden="true">
+            <span className="brand-letter">V</span>
+            <span className="brand-expand brand-expand-first">era </span>
+            <span className="brand-letter">V</span>
+            <span className="brand-expand brand-expand-second">ekiou</span>
+          </span>
+        </a>
+        <nav className="nav-links" aria-label="Main navigation">
+          <a className="active" href="#top">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section className="hero playful-hero centered-home-hero" id="top">
+        <div className="centered-hero-avatar" aria-label="Vera Vekiou portrait">
+          <img
+            className="avatar home-center-avatar"
+            src="/avatar.jpg"
+            alt="Vera Vekiou portrait"
+          />
+        </div>
+
+        <div className="hero-copy centered-hero-copy">
+          <p className="eyebrow">
+            <Sparkles size={15} aria-hidden="true" />
+            Junior Software Engineer
+          </p>
+          <h1 className="hero-title">
+            <span className="hero-greeting">HI, MY NAME IS</span>
+            <span>VERA VEKIOU</span>
+          </h1>
+
+          <p className="hero-typing-line" aria-live="polite">
+            <span className="hero-typing-text">{typedText}</span>
+            <span className="hero-typing-cursor" aria-hidden="true">_</span>
+          </p>
+
+          <a className="hero-scroll-hint" href="#about" aria-label="Scroll to About">
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </section>
+
+      <section className="section about-section about-editorial-section" id="about">
+        <div className="about-role-block">
+          <p className="eyebrow">About</p>
+          <h2 aria-label="Junior Software Engineer">
+            <span>Junior</span>
+            <span>Software</span>
+            <span>Engineer</span>
+          </h2>
+        </div>
+
+        <div className="about-motion-line" aria-hidden="true">
+          <span className="about-line-dot" />
+        </div>
+
+        <div className="about-statement-block">
+          <p className="about-location">Based in Greece.</p>
+          <p className="about-big-statement">
+            I build fast, modern digital products with
+            <span> clean UIs</span>, <span>solid back-end logic</span>, and
+            <span> real results</span>.
+          </p>
+          <p className="about-support-text">
+            I focus on practical applications that combine clear interfaces,
+            structured code, and features that feel useful from the first click.
+          </p>
+          <div className="about-focus-line" aria-label="Development focus areas">
+            <span>Web</span>
+            <span>Mobile</span>
+            <span>Desktop</span>
+            <span>Databases</span>
+          </div>
+        </div>
+      </section>
+
+      <section className="section projects-section" id="projects">
+        <div className="projects-heading">
+          <p className="eyebrow">Projects</p>
+          <h2>From ideas to working products.</h2>
+          <span className="projects-heading-line" aria-hidden="true" />
+        </div>
+        <div className="case-study-stack">
+          {projects.map((project, index) => (
+            <article className="case-study" key={project.title}>
+              <div className="case-study-copy">
+                <span className="case-study-number">
+                  {String(index + 1).padStart(2, '0')}
+                </span>
+                <div className="project-meta">
+                  <span>{project.type}</span>
+                  {index === 0 && <span>Featured</span>}
+                </div>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <div
+                  className="highlight-row"
+                  aria-label={`${project.title} highlights`}
+                >
+                  {project.highlights.map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
+                <div className="tag-row">
+                  {project.stack.slice(0, index === 0 ? 6 : 5).map((item) => (
+                    <span key={item}>{item}</span>
+                  ))}
+                </div>
+                <div className="project-links">
+                  {project.github && (
+                    <a href={project.github} target="_blank" rel="noreferrer">
+                      <Github size={16} aria-hidden="true" />
+                      GitHub
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a href={project.demo} target="_blank" rel="noreferrer">
+                      <ExternalLink size={16} aria-hidden="true" />
+                      Demo
+                    </a>
+                  )}
+                </div>
+              </div>
+              <div className="case-study-frame">
+                <ProjectMedia project={project} priority={index === 0} />
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section skills-showcase" id="skills">
+        <div className="skills-heading centered">
+          <p className="eyebrow">Skills</p>
+          <h2>Tech Stack</h2>
+          <p className="section-text skills-intro">
+            Technologies I use to build clean, functional, and user-focused
+            applications.
+          </p>
+        </div>
+
+        <div className="tech-bubble-grid" aria-label="Tech stack">
+          {techStack.map((skill) => (
+            <div
+              className="tech-bubble"
+              key={skill.name}
+              style={{ '--float-delay': skill.delay }}
+            >
+              <div
+                className={`tech-circle${skill.logo ? ' has-logo' : ''}`}
+                aria-hidden="true"
+              >
+                {skill.logo && (
+                  <img
+                    className={`tech-logo-image${
+                      skill.contrast ? ' needs-contrast' : ''
+                    }`}
+                    src={skill.logo}
+                    alt=""
+                    loading="lazy"
+                    onError={(event) => {
+                      event.currentTarget.style.display = 'none';
+                      event.currentTarget.nextElementSibling.style.display = 'grid';
+                    }}
+                  />
+                )}
+                <span className={skill.logo ? 'tech-fallback hidden' : 'tech-fallback'}>
+                  {skill.fallback}
+                </span>
+              </div>
+              <span className="tech-label">{skill.name}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="contact-section get-in-touch-contact" id="contact">
+        <div className="contact-glow" aria-hidden="true" />
+        <div className="contact-grid-bg" aria-hidden="true" />
+
+        <div className="get-in-touch-copy">
+          <p className="get-in-touch-shadow">GET IN</p>
+          <h2>
+            <span>GET IN</span>
+            <strong>TOUCH</strong>
+          </h2>
+          <p className="get-in-touch-note">Open to opportunities.</p>
+        </div>
+
+        {contactLinks.length > 0 && (
+          <div className="get-in-touch-socials" aria-label="Contact links">
+            {contactLinks.map((link) => (
+              <a
+                className="social-orb"
+                href={link.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={link.label}
+                title={link.label}
+                key={link.label}
+              >
+                <link.icon size={24} aria-hidden="true" />
+                <span className="social-label">
+                  {link.label === 'Send email' ? 'Email' : link.label}
+                </span>
+              </a>
+            ))}
+          </div>
+        )}
+      </section>
+    </main>
+  );
+}
+
+createRoot(document.getElementById('root')).render(<App />);
