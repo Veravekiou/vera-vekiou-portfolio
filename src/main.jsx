@@ -51,26 +51,26 @@ const projects = [
     github: 'https://github.com/Veravekiou/plango-travel-site',
   },
   {
-    title: 'Theatre Booking App',
+    title: 'Theater Booking App',
     type: 'Full-stack mobile app',
     mediaType: 'mobile',
     mediaLayout: 'phone-pair',
     images: [
       {
         src: '/projects/theatre-home.jpg',
-        alt: 'Theatre Booking App home screen with now showing theatre production',
+        alt: 'Theater Booking App home screen with now showing theater production',
         fit: 'cover',
         position: 'top center',
       },
       {
         src: '/projects/theatre-booking.jpg',
-        alt: 'Theatre Booking App seat selection and ticket booking screen',
+        alt: 'Theater Booking App seat selection and ticket booking screen',
         fit: 'cover',
         position: 'top center',
       },
     ],
     description:
-      'A theatre booking system where users can register, browse productions, search showtimes, select seats, book tickets, and manage reservations.',
+      'A theater booking system where users can register, browse productions, search showtimes, select seats, book tickets, and manage reservations.',
     highlights: ['Seat selection', 'JWT auth', 'Reservations'],
     stack: ['Expo', 'React Native', 'Express', 'JWT', 'MariaDB'],
     impact:
@@ -300,7 +300,7 @@ const heroHighlights = ['5 Projects', 'Web · Mobile · Desktop', 'Open to junio
 
 const heroFocus = ['React', 'PHP / MySQL', 'Firebase', 'Java'];
 
-const heroMiniProjects = ['PlanGo', 'Theatre Booking', 'FixMyCity'];
+const heroMiniProjects = ['PlanGo', 'Theater Booking', 'FixMyCity'];
 
 function ContactLink({ href, icon: Icon, label }) {
   if (!href) return null;
@@ -702,7 +702,8 @@ function App() {
 
         {contactLinks.length > 0 && (
           <div className="get-in-touch-socials" aria-label="Contact links">
-            {contactLinks.map((link) => (
+            <div className="social-orb-row">
+              {contactLinks.map((link) => (
               <a
                 className="social-orb"
                 href={link.href}
@@ -717,7 +718,11 @@ function App() {
                   {link.label === 'Send email' ? 'Email' : link.label}
                 </span>
               </a>
-            ))}
+              ))}
+            </div>
+            <a className="get-in-touch-email" href={`mailto:${profile.email}`}>
+              {profile.email}
+            </a>
           </div>
         )}
       </section>
