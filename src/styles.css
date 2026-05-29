@@ -6662,3 +6662,40 @@ body {
     background-size: auto !important;
   }
 }
+
+
+/* FINAL mobile project image fixes: remove side/bottom empty gaps */
+@media (max-width: 560px) {
+  /* PetPlanet products screenshot: fill the mobile card width */
+  .case-study-media.petplanet-layered .browser-preview.shot-2 .project-image {
+    height: 255px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+    background: transparent !important;
+  }
+
+  /* PlanGo generate trip screenshot: remove the empty bottom area */
+  .case-study-media.plango-layered .browser-preview.shot-2 .project-image {
+    height: 245px !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+    background: transparent !important;
+  }
+
+  .case-study-media.petplanet-layered .browser-preview.shot-2,
+  .case-study-media.plango-layered .browser-preview.shot-2 {
+    overflow: hidden !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .case-study-media.petplanet-layered .browser-preview.shot-2 .project-image {
+    height: 235px !important;
+  }
+
+  .case-study-media.plango-layered .browser-preview.shot-2 .project-image {
+    height: 225px !important;
+  }
+}
