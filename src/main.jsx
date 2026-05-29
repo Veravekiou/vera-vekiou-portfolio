@@ -16,7 +16,7 @@ const profile = {
   email: 'vvekiou@gmail.com',
   github: 'https://github.com/Veravekiou',
   linkedin: 'https://www.linkedin.com/in/varvara-vekiou/',
-  cv: '/resume.pdf',
+  cv: '',
 };
 
 const projects = [
@@ -489,11 +489,6 @@ function App() {
       icon: Linkedin,
       label: 'LinkedIn',
     },
-    profile.cv && {
-      href: profile.cv,
-      icon: ExternalLink,
-      label: 'CV',
-    },
   ].filter(Boolean);
 
   return (
@@ -517,13 +512,13 @@ function App() {
 
         <a
           className="nav-resume"
-          href={profile.cv}
+          href="/resume.pdf"
           target="_blank"
-          rel="noreferrer"
-          aria-label="View resume"
+          rel="noopener noreferrer"
+          aria-label="Open resume"
           title="Resume"
         >
-          <FileText size={18} aria-hidden="true" />
+          <FileText className="nav-resume-icon" size={18} strokeWidth={2.25} aria-hidden="true" />
           <span>Resume</span>
         </a>
       </header>

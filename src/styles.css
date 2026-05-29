@@ -5156,12 +5156,6 @@ body {
   }
 }
 
-
-
-
-
-
-
 /* Navbar resume button */
 .nav-resume {
   position: absolute;
@@ -5174,14 +5168,13 @@ body {
   height: 46px;
   align-items: center;
   justify-content: center;
-  gap: 9px;
   overflow: hidden;
-  border: 1px solid rgba(255, 246, 239, 0.13);
+  border: 1px solid rgba(255, 246, 239, 0.14);
   border-radius: 999px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
-    rgba(255, 255, 255, 0.025);
-  color: rgba(255, 246, 239, 0.78);
+    rgba(255, 255, 255, 0.026);
+  color: rgba(255, 246, 239, 0.8);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     0 12px 30px rgba(0, 0, 0, 0.14);
@@ -5196,6 +5189,17 @@ body {
     transform 180ms ease;
 }
 
+.nav-resume-icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  flex: 0 0 auto;
+  transform: translate(-50%, -50%);
+  transition:
+    left 240ms ease,
+    transform 240ms ease;
+}
+
 .nav-resume span {
   max-width: 0;
   opacity: 0;
@@ -5204,6 +5208,7 @@ body {
   font-size: 0.68rem;
   font-weight: 900;
   letter-spacing: 0.14em;
+  line-height: 1;
   text-transform: uppercase;
   white-space: nowrap;
   transition:
@@ -5226,10 +5231,17 @@ body {
   transform: translateY(-50%) translateY(-1px);
 }
 
+.nav-resume:hover .nav-resume-icon,
+.nav-resume:focus-visible .nav-resume-icon {
+  left: 23px;
+  transform: translate(0, -50%);
+}
+
 .nav-resume:hover span,
 .nav-resume:focus-visible span {
   max-width: 82px;
   opacity: 1;
+  margin-left: 24px;
 }
 
 @media (max-width: 860px) {
@@ -5243,6 +5255,11 @@ body {
   .nav-resume:hover,
   .nav-resume:focus-visible {
     width: 112px;
+  }
+
+  .nav-resume:hover .nav-resume-icon,
+  .nav-resume:focus-visible .nav-resume-icon {
+    left: 20px;
   }
 
   .nav-links {
@@ -5265,4 +5282,28 @@ body {
   .nav-resume:focus-visible {
     width: 38px;
   }
+
+  .nav-resume:hover .nav-resume-icon,
+  .nav-resume:focus-visible .nav-resume-icon {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+
+/* Final resume placement fix: navbar only */
+.site-header .nav-resume {
+  z-index: 140;
+  pointer-events: auto;
+}
+
+.site-header .nav-resume .nav-resume-icon {
+  display: block;
+  margin: 0;
+}
+
+.contact-actions a[href="/resume.pdf"],
+.contact-actions a[href$="resume.pdf"] {
+  display: none !important;
 }
