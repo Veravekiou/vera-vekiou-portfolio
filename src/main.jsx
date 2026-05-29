@@ -42,6 +42,43 @@ const projects = [
         label: 'generate trip',
       },
     ],
+    galleryImages: [
+      {
+        src: '/projects/plango-preview.png',
+        alt: 'PlanGo travel planning homepage with hero section and popular destinations',
+        fit: 'cover',
+        position: 'top center',
+        label: 'home',
+      },
+      {
+        src: '/projects/plango-generate-trip.png',
+        alt: 'PlanGo generate trip destination step screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'generate trip',
+      },
+      {
+        src: '/projects/plango-my-trips.png',
+        alt: 'PlanGo my trips page with saved trip cards and filters',
+        fit: 'contain',
+        position: 'top center',
+        label: 'my trips',
+      },
+      {
+        src: '/projects/plango-profile-map.png',
+        alt: 'PlanGo profile and journey map screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'profile map',
+      },
+      {
+        src: '/projects/plango-trip-details-map.png',
+        alt: 'PlanGo trip details page with itinerary and route map',
+        fit: 'contain',
+        position: 'top center',
+        label: 'trip details',
+      },
+    ],
     description:
       'A PHP/MySQL travel planning web application that generates personalized itineraries, saves trips, manages user profiles, and supports route and map-based travel context.',
     highlights: ['Personalized itineraries', 'Saved trips', 'Map context'],
@@ -319,16 +356,18 @@ function ContactLink({ href, icon: Icon, label }) {
 }
 
 function ProjectGalleryModal({ project, activeIndex, onSelect, onClose }) {
-  if (!project?.images?.length) return null;
+  const galleryImages = project.galleryImages || project.images || [];
 
-  const activeImage = project.images[activeIndex] || project.images[0];
+  if (!galleryImages.length) return null;
+
+  const activeImage = galleryImages[activeIndex] || galleryImages[0];
 
   const goToPrevious = () => {
-    onSelect((activeIndex - 1 + project.images.length) % project.images.length);
+    onSelect((activeIndex - 1 + galleryImages.length) % galleryImages.length);
   };
 
   const goToNext = () => {
-    onSelect((activeIndex + 1) % project.images.length);
+    onSelect((activeIndex + 1) % galleryImages.length);
   };
 
   return (
@@ -359,7 +398,7 @@ function ProjectGalleryModal({ project, activeIndex, onSelect, onClose }) {
         </div>
 
         <div className="project-gallery-stage">
-          {project.images.length > 1 && (
+          {galleryImages.length > 1 && (
             <button
               className="project-gallery-arrow prev"
               type="button"
@@ -376,7 +415,7 @@ function ProjectGalleryModal({ project, activeIndex, onSelect, onClose }) {
             style={{ objectPosition: activeImage.position || 'top center' }}
           />
 
-          {project.images.length > 1 && (
+          {galleryImages.length > 1 && (
             <button
               className="project-gallery-arrow next"
               type="button"
@@ -388,9 +427,9 @@ function ProjectGalleryModal({ project, activeIndex, onSelect, onClose }) {
           )}
         </div>
 
-        {project.images.length > 1 && (
+        {galleryImages.length > 1 && (
           <div className="project-gallery-thumbs" aria-label="Gallery images">
-            {project.images.map((image, imageIndex) => (
+            {galleryImages.map((image, imageIndex) => (
               <button
                 className={imageIndex === activeIndex ? 'is-active' : ''}
                 type="button"
