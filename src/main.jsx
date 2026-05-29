@@ -106,6 +106,44 @@ const projects = [
         position: 'top center',
       },
     ],
+    galleryMode: 'mobile-mockup',
+    galleryImages: [
+      {
+        src: '/projects/theatre-home.jpg',
+        alt: 'Theater Booking App home screen with now showing theater production',
+        fit: 'contain',
+        position: 'top center',
+        label: 'home',
+      },
+      {
+        src: '/projects/theatre-booking.jpg',
+        alt: 'Theater Booking App seat selection and ticket booking screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'booking',
+      },
+      {
+        src: '/projects/theatre-login.png',
+        alt: 'Theater Booking App login screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'login',
+      },
+      {
+        src: '/projects/theatre-showtimes.png',
+        alt: 'Theater Booking App showtimes screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'showtimes',
+      },
+      {
+        src: '/projects/theatre-profile.png',
+        alt: 'Theater Booking App profile and reservation history screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'profile',
+      },
+    ],
     description:
       'A theater booking system where users can register, browse productions, search showtimes, select seats, book tickets, and manage reservations.',
     highlights: ['Seat selection', 'JWT auth', 'Reservations'],
@@ -124,9 +162,39 @@ const projects = [
     images: [
       {
         src: '/projects/travel-agency-dashboard.png',
-        alt: 'Travel Agency Management System dashboard with bookings and popular destinations chart',
+        alt: 'Travel Agency Management System dashboard screen',
         fit: 'contain',
         position: 'top center',
+      },
+    ],
+    galleryImages: [
+      {
+        src: '/projects/travel-agency-dashboard.png',
+        alt: 'Travel Agency Management System dashboard screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'dashboard',
+      },
+      {
+        src: '/projects/travel-agency-customers.png',
+        alt: 'Travel Agency Management System customer information table',
+        fit: 'contain',
+        position: 'top center',
+        label: 'customers',
+      },
+      {
+        src: '/projects/travel-agency-bookings.png',
+        alt: 'Travel Agency Management System bookings screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'bookings',
+      },
+      {
+        src: '/projects/travel-agency-trips.png',
+        alt: 'Travel Agency Management System trips screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'trips',
       },
     ],
     description:
@@ -146,17 +214,47 @@ const projects = [
     images: [
       {
         src: '/projects/petplanet-home.png',
-        alt: 'PetPlanet homepage hero section with pet shop navigation',
+        alt: 'PetPlanet homepage hero section',
         fit: 'cover',
         position: 'top center',
-        label: 'petplanet.shop',
+        label: 'homepage',
       },
       {
         src: '/projects/petplanet-products.png',
-        alt: 'PetPlanet cats products page with category cards',
+        alt: 'PetPlanet cats products page',
         fit: 'contain',
         position: 'top center',
         label: 'products',
+      },
+    ],
+    galleryImages: [
+      {
+        src: '/projects/petplanet-home.png',
+        alt: 'PetPlanet homepage hero section',
+        fit: 'contain',
+        position: 'top center',
+        label: 'homepage',
+      },
+      {
+        src: '/projects/petplanet-products.png',
+        alt: 'PetPlanet cats products page with product dropdown',
+        fit: 'contain',
+        position: 'top center',
+        label: 'products',
+      },
+      {
+        src: '/projects/petplanet-adopt.png',
+        alt: 'PetPlanet adopt now page with pet cards',
+        fit: 'contain',
+        position: 'top center',
+        label: 'adopt',
+      },
+      {
+        src: '/projects/petplanet-about.png',
+        alt: 'PetPlanet about us page',
+        fit: 'contain',
+        position: 'top center',
+        label: 'about',
       },
     ],
     description:
@@ -176,15 +274,53 @@ const projects = [
     images: [
       {
         src: '/projects/fixmycity-home.png',
-        alt: 'FixMyCity home dashboard with report summary and navigation',
+        alt: 'FixMyCity mobile app home dashboard screen',
         fit: 'cover',
         position: 'top center',
       },
       {
         src: '/projects/fixmycity-report.png',
-        alt: 'FixMyCity submit new report form with category details and location',
+        alt: 'FixMyCity mobile app new report form screen',
         fit: 'cover',
         position: 'top center',
+      },
+    ],
+    galleryMode: 'mobile-mockup',
+    galleryImages: [
+      {
+        src: '/projects/fixmycity-home.png',
+        alt: 'FixMyCity mobile app home dashboard screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'home',
+      },
+      {
+        src: '/projects/fixmycity-report.png',
+        alt: 'FixMyCity mobile app new report form screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'new report',
+      },
+      {
+        src: '/projects/fixmycity-report-details.png',
+        alt: 'FixMyCity report details screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'details',
+      },
+      {
+        src: '/projects/fixmycity-my-reports.png',
+        alt: 'FixMyCity my reports list screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'my reports',
+      },
+      {
+        src: '/projects/fixmycity-map-location.png',
+        alt: 'FixMyCity map location picker screen',
+        fit: 'contain',
+        position: 'top center',
+        label: 'map',
       },
     ],
     description:
@@ -409,11 +545,22 @@ function ProjectGalleryModal({ project, activeIndex, onSelect, onClose }) {
             </button>
           )}
 
-          <img
-            src={activeImage.src}
-            alt={activeImage.alt}
-            style={{ objectPosition: activeImage.position || 'top center' }}
-          />
+          {project.galleryMode === 'mobile-mockup' ? (
+            <div className="mobile-gallery-device">
+              <div className="mobile-gallery-speaker" aria-hidden="true" />
+              <img
+                src={activeImage.src}
+                alt={activeImage.alt}
+                style={{ objectPosition: activeImage.position || 'top center' }}
+              />
+            </div>
+          ) : (
+            <img
+              src={activeImage.src}
+              alt={activeImage.alt}
+              style={{ objectPosition: activeImage.position || 'top center' }}
+            />
+          )}
 
           {galleryImages.length > 1 && (
             <button
