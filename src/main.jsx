@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   ExternalLink,
+  FileText,
   Github,
   Linkedin,
   Mail,
@@ -15,7 +16,7 @@ const profile = {
   email: 'vvekiou@gmail.com',
   github: 'https://github.com/Veravekiou',
   linkedin: 'https://www.linkedin.com/in/varvara-vekiou/',
-  cv: '',
+  cv: '/resume.pdf',
 };
 
 const projects = [
@@ -513,6 +514,18 @@ function App() {
           <a href="#skills">Skills</a>
           <a href="#contact">Contact</a>
         </nav>
+
+        <a
+          className="nav-resume"
+          href={profile.cv}
+          target="_blank"
+          rel="noreferrer"
+          aria-label="View resume"
+          title="Resume"
+        >
+          <FileText size={18} aria-hidden="true" />
+          <span>Resume</span>
+        </a>
       </header>
 
       <section className="hero playful-hero centered-home-hero" id="top">

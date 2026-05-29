@@ -5159,3 +5159,110 @@ body {
 
 
 
+
+
+
+/* Navbar resume button */
+.nav-resume {
+  position: absolute;
+  right: clamp(24px, 2.8vw, 52px);
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  width: 46px;
+  min-width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 246, 239, 0.13);
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    rgba(255, 255, 255, 0.025);
+  color: rgba(255, 246, 239, 0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 12px 30px rgba(0, 0, 0, 0.14);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition:
+    width 240ms ease,
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.nav-resume span {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    max-width 240ms ease,
+    opacity 160ms ease;
+}
+
+.nav-resume:hover,
+.nav-resume:focus-visible {
+  width: 132px;
+  color: #ffffff;
+  border-color: rgba(217, 138, 164, 0.34);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.025)),
+    rgba(183, 47, 91, 0.12);
+  box-shadow:
+    0 16px 38px rgba(0, 0, 0, 0.22),
+    0 0 22px rgba(183, 47, 91, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-50%) translateY(-1px);
+}
+
+.nav-resume:hover span,
+.nav-resume:focus-visible span {
+  max-width: 82px;
+  opacity: 1;
+}
+
+@media (max-width: 860px) {
+  .nav-resume {
+    right: 18px;
+    width: 42px;
+    min-width: 42px;
+    height: 42px;
+  }
+
+  .nav-resume:hover,
+  .nav-resume:focus-visible {
+    width: 112px;
+  }
+
+  .nav-links {
+    max-width: calc(100vw - 160px);
+  }
+}
+
+@media (max-width: 640px) {
+  .nav-resume {
+    width: 38px;
+    min-width: 38px;
+    height: 38px;
+  }
+
+  .nav-resume span {
+    display: none;
+  }
+
+  .nav-resume:hover,
+  .nav-resume:focus-visible {
+    width: 38px;
+  }
+}
