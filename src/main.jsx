@@ -419,6 +419,7 @@ function ProjectMedia({ project, priority = false }) {
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -429,6 +430,22 @@ function App() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle('mobile-menu-open', isMobileMenuOpen);
+
+    const handleResize = () => {
+      if (window.innerWidth > 760) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      document.body.classList.remove('mobile-menu-open');
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [isMobileMenuOpen]);
 
   const typingPhrases = [
     'building web apps',
@@ -493,8 +510,17 @@ function App() {
 
   return (
     <main>
-      <header className={`site-header${isScrolled ? ' is-scrolled' : ''}`}>
-        <a className="brand" href="#top" aria-label="Portfolio home">
+      <header
+        className={`site-header${isScrolled ? ' is-scrolled' : ''}${
+          isMobileMenuOpen ? ' is-menu-open' : ''
+        }`}
+      >
+        <a
+          className="brand"
+          href="#top"
+          aria-label="Portfolio home"
+          onClick={() => setIsMobileMenuOpen(false)}
+        >
           <span className="brand-mark brand-word" aria-hidden="true">
             <span className="brand-letter">V</span>
             <span className="brand-expand brand-expand-first">era </span>
@@ -503,11 +529,11 @@ function App() {
           </span>
         </a>
         <nav className="nav-links" aria-label="Main navigation">
-          <a className="active" href="#top">Home</a>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
+          <a className="active" href="#top" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
+          <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+          <a href="#projects" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
+          <a href="#skills" onClick={() => setIsMobileMenuOpen(false)}>Skills</a>
+          <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
         </nav>
 
         <a
@@ -521,6 +547,36 @@ function App() {
           <FileText className="nav-resume-icon" size={18} strokeWidth={2.25} aria-hidden="true" />
           <span>Resume</span>
         </a>
+
+        <button
+          className="nav-menu-toggle"
+          type="button"
+          aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isMobileMenuOpen}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            setIsMobileMenuOpen((open) => !open);
+          }}
+        >
+          <span className="hamburger-lines" aria-hidden="true">
+            <i />
+            <i />
+            <i />
+          </span>
+        </button>
+
+        <nav
+          className="mobile-menu-panel"
+          aria-label="Mobile navigation"
+          aria-hidden={!isMobileMenuOpen}
+        >
+          <a href="#top" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
+          <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
+          <a href="#projects" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
+          <a href="#skills" onClick={() => setIsMobileMenuOpen(false)}>Skills</a>
+          <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+        </nav>
       </header>
 
       <section className="hero playful-hero centered-home-hero" id="top">
@@ -704,20 +760,20 @@ function App() {
           <div className="get-in-touch-socials" aria-label="Contact links">
             <div className="social-orb-row">
               {contactLinks.map((link) => (
-              <a
-                className="social-orb"
-                href={link.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-label={link.label}
-                title={link.label}
-                key={link.label}
-              >
-                <link.icon size={24} aria-hidden="true" />
-                <span className="social-label">
-                  {link.label === 'Send email' ? 'Email' : link.label}
-                </span>
-              </a>
+                <a
+                  className="social-orb"
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={link.label}
+                  title={link.label}
+                  key={link.label}
+                >
+                  <link.icon size={24} aria-hidden="true" />
+                  <span className="social-label">
+                    {link.label === 'Send email' ? 'Email' : link.label}
+                  </span>
+                </a>
               ))}
             </div>
             <a className="get-in-touch-email" href={`mailto:${profile.email}`}>
