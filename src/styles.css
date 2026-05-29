@@ -6300,3 +6300,311 @@ body {
     transform: none !important;
   }
 }
+
+
+/* FINAL mobile home alignment + slightly larger avatar */
+@media (max-width: 760px) {
+  .hero.playful-hero.centered-home-hero,
+  .centered-home-hero {
+    width: 100% !important;
+    min-height: 100dvh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 28px !important;
+    padding: 118px 18px 72px !important;
+    text-align: center !important;
+  }
+
+  .centered-hero-avatar {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+  }
+
+  .avatar.home-center-avatar {
+    width: clamp(164px, 43vw, 198px) !important;
+    height: clamp(164px, 43vw, 198px) !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-copy.centered-hero-copy,
+  .centered-hero-copy {
+    width: 100% !important;
+    max-width: 680px !important;
+    display: grid !important;
+    justify-items: center !important;
+    align-items: center !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  .hero-copy.centered-hero-copy > *,
+  .centered-hero-copy > * {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+
+  .eyebrow,
+  .hero-copy .eyebrow,
+  .centered-hero-copy .eyebrow {
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: auto !important;
+  }
+
+  .hero-name-block,
+  .hero-name-block span,
+  .hero-name-block strong {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .typing-line,
+  .centered-hero-copy .typing-line {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .scroll-hint,
+  .centered-hero-copy .scroll-hint {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .avatar.home-center-avatar {
+    width: clamp(154px, 45vw, 180px) !important;
+    height: clamp(154px, 45vw, 180px) !important;
+  }
+
+  .hero.playful-hero.centered-home-hero,
+  .centered-home-hero {
+    gap: 24px !important;
+    padding-top: 108px !important;
+  }
+}
+
+
+/* FINAL mobile About redesign: cleaner, centered, readable */
+@media (max-width: 760px) {
+  .about-editorial-section {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+    align-items: center !important;
+    justify-items: center !important;
+    min-height: auto !important;
+    padding: 78px 18px 84px !important;
+    overflow: hidden !important;
+    text-align: center !important;
+    border-top: 1px solid rgba(255, 246, 239, 0.08) !important;
+  }
+
+  .about-editorial-section::before {
+    inset: 8% auto auto 50% !important;
+    width: 260px !important;
+    height: 260px !important;
+    background: radial-gradient(circle, rgba(183, 47, 91, 0.18), transparent 70%) !important;
+    filter: blur(10px) !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .about-role-block,
+  .about-statement-block {
+    width: 100% !important;
+    max-width: 430px !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+
+  .about-role-block .eyebrow {
+    width: auto !important;
+    margin: 0 auto 18px !important;
+    justify-content: center !important;
+  }
+
+  .about-role-block h2 {
+    display: grid !important;
+    gap: 2px !important;
+    justify-items: center !important;
+    margin: 0 auto !important;
+    font-size: clamp(2.65rem, 13.5vw, 4.35rem) !important;
+    line-height: 0.86 !important;
+    letter-spacing: -0.055em !important;
+    text-align: center !important;
+  }
+
+  .about-role-block h2 span {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  .about-motion-line {
+    width: min(100%, 300px) !important;
+    height: 1px !important;
+    margin: 10px auto 6px !important;
+    justify-self: center !important;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(217, 138, 164, 0.52),
+      rgba(255, 246, 239, 0.18),
+      transparent
+    ) !important;
+  }
+
+  .about-line-dot {
+    top: 50% !important;
+    left: 12% !important;
+    width: 8px !important;
+    height: 8px !important;
+    transform: translate(-50%, -50%) !important;
+    animation: aboutDotTravelMobile 4.8s ease-in-out infinite !important;
+  }
+
+  .about-location {
+    margin: 0 0 16px !important;
+    color: rgba(217, 138, 164, 0.92) !important;
+    font-size: 0.72rem !important;
+    letter-spacing: 0.16em !important;
+    text-align: center !important;
+  }
+
+  .about-big-statement {
+    max-width: 390px !important;
+    margin: 0 auto !important;
+    color: rgba(255, 246, 239, 0.84) !important;
+    font-size: clamp(1.28rem, 6.8vw, 1.78rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.22 !important;
+    letter-spacing: -0.018em !important;
+    text-align: center !important;
+  }
+
+  .about-big-statement span {
+    color: #f0a8be !important;
+    text-shadow: 0 0 16px rgba(217, 138, 164, 0.14) !important;
+  }
+
+  .about-support-text {
+    max-width: 380px !important;
+    margin: 18px auto 0 !important;
+    color: rgba(197, 178, 181, 0.84) !important;
+    font-size: 0.94rem !important;
+    font-weight: 550 !important;
+    line-height: 1.65 !important;
+    text-align: center !important;
+  }
+
+  .about-focus-line {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    width: min(100%, 330px) !important;
+    margin: 24px auto 0 !important;
+    color: rgba(255, 246, 239, 0.72) !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.12em !important;
+    text-align: center !important;
+  }
+
+  .about-focus-line span {
+    justify-content: center !important;
+    min-height: 38px !important;
+    border: 1px solid rgba(255, 246, 239, 0.1) !important;
+    border-radius: 999px !important;
+    background: rgba(255, 246, 239, 0.045) !important;
+  }
+
+  .about-focus-line span::after {
+    display: none !important;
+  }
+}
+
+@media (max-width: 390px) {
+  .about-editorial-section {
+    padding: 66px 14px 74px !important;
+    gap: 20px !important;
+  }
+
+  .about-role-block h2 {
+    font-size: clamp(2.42rem, 14vw, 3.55rem) !important;
+  }
+
+  .about-big-statement {
+    font-size: clamp(1.18rem, 6.5vw, 1.5rem) !important;
+  }
+
+  .about-support-text {
+    font-size: 0.88rem !important;
+  }
+
+  .about-focus-line {
+    width: min(100%, 300px) !important;
+    gap: 8px !important;
+    font-size: 0.64rem !important;
+  }
+}
+
+
+/* FINAL mobile projects heading + clean Get in Touch background */
+@media (max-width: 760px) {
+  .projects-heading,
+  .projects-section .projects-heading {
+    width: 100% !important;
+    max-width: 420px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    justify-items: center !important;
+    text-align: center !important;
+  }
+
+  .projects-heading .eyebrow,
+  .projects-section .projects-heading .eyebrow {
+    justify-content: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+
+  .projects-heading h2,
+  .projects-section .projects-heading h2 {
+    max-width: 360px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+  }
+
+  .projects-heading-line {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  .get-in-touch-section,
+  .contact-section,
+  .get-in-touch-contact {
+    background-image: none !important;
+  }
+
+  .get-in-touch-section::before,
+  .get-in-touch-section::after,
+  .contact-section::before,
+  .contact-section::after,
+  .get-in-touch-contact::before,
+  .get-in-touch-contact::after {
+    background-image: none !important;
+  }
+}
