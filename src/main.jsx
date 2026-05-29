@@ -318,7 +318,97 @@ function ContactLink({ href, icon: Icon, label }) {
   );
 }
 
-function ProjectMedia({ project, priority = false }) {
+function ProjectGalleryModal({ project, activeIndex, onSelect, onClose }) {
+  if (!project?.images?.length) return null;
+
+  const activeImage = project.images[activeIndex] || project.images[0];
+
+  const goToPrevious = () => {
+    onSelect((activeIndex - 1 + project.images.length) % project.images.length);
+  };
+
+  const goToNext = () => {
+    onSelect((activeIndex + 1) % project.images.length);
+  };
+
+  return (
+    <div
+      className="project-gallery-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${project.title} gallery`}
+      onClick={onClose}
+    >
+      <div
+        className="project-gallery-panel"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="project-gallery-topbar">
+          <div>
+            <span className="project-gallery-kicker">Project gallery</span>
+            <h3>{project.title}</h3>
+          </div>
+          <button
+            className="project-gallery-close"
+            type="button"
+            aria-label="Close gallery"
+            onClick={onClose}
+          >
+            ×
+          </button>
+        </div>
+
+        <div className="project-gallery-stage">
+          {project.images.length > 1 && (
+            <button
+              className="project-gallery-arrow prev"
+              type="button"
+              aria-label="Previous image"
+              onClick={goToPrevious}
+            >
+              ‹
+            </button>
+          )}
+
+          <img
+            src={activeImage.src}
+            alt={activeImage.alt}
+            style={{ objectPosition: activeImage.position || 'top center' }}
+          />
+
+          {project.images.length > 1 && (
+            <button
+              className="project-gallery-arrow next"
+              type="button"
+              aria-label="Next image"
+              onClick={goToNext}
+            >
+              ›
+            </button>
+          )}
+        </div>
+
+        {project.images.length > 1 && (
+          <div className="project-gallery-thumbs" aria-label="Gallery images">
+            {project.images.map((image, imageIndex) => (
+              <button
+                className={imageIndex === activeIndex ? 'is-active' : ''}
+                type="button"
+                key={image.src}
+                onClick={() => onSelect(imageIndex)}
+                aria-label={`Show image ${imageIndex + 1}`}
+              >
+                <img src={image.src} alt="" aria-hidden="true" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function ProjectMedia({ project, priority = false, onOpenGallery }) {
   const images = project.images || [];
   const backgroundImage = images[0]?.src;
   const isWebLayered = project.mediaLayout === 'web-layered';
@@ -347,8 +437,18 @@ function ProjectMedia({ project, priority = false }) {
           {images.map((image, imageIndex) =>
             isWebLayered ? (
               <div
-                className={`browser-preview shot-${imageIndex + 1}`}
+                className={`browser-preview gallery-trigger shot-${imageIndex + 1}`}
                 key={image.src}
+                role="button"
+                tabIndex={0}
+                onClick={() => onOpenGallery?.(project, imageIndex)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    onOpenGallery?.(project, imageIndex);
+                  }
+                }}
+                aria-label={`Open ${project.title} gallery`}
               >
                 <div className="browser-preview-bar" aria-hidden="true">
                   <span className="browser-dots">
@@ -372,7 +472,19 @@ function ProjectMedia({ project, priority = false }) {
               </div>
             ) : isDesktopFloating ? (
               <div className="desktop-showcase" key={image.src}>
-                <div className="desktop-window-preview shot-1">
+                <div
+                  className="desktop-window-preview gallery-trigger shot-1"
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => onOpenGallery?.(project, imageIndex)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      onOpenGallery?.(project, imageIndex);
+                    }
+                  }}
+                  aria-label={`Open ${project.title} gallery`}
+                >
                   <div className="desktop-window-bar" aria-hidden="true">
                     <span className="desktop-window-title">
                       {project.windowLabel || project.title}
@@ -396,7 +508,7 @@ function ProjectMedia({ project, priority = false }) {
               </div>
             ) : (
               <img
-                className={`project-image media-shot shot-${imageIndex + 1} ${
+                className={`project-image media-shot gallery-trigger shot-${imageIndex + 1} ${
                   image.fit === 'cover' ? 'cover' : 'contain'
                 }`}
                 key={image.src}
@@ -404,6 +516,15 @@ function ProjectMedia({ project, priority = false }) {
                 alt={image.alt}
                 loading={priority && imageIndex === 0 ? undefined : 'lazy'}
                 style={{ objectPosition: image.position || 'center' }}
+                onClick={() => onOpenGallery?.(project, imageIndex)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    onOpenGallery?.(project, imageIndex);
+                  }
+                }}
+                role="button"
+                tabIndex={0}
               />
             ),
           )}
@@ -420,6 +541,7 @@ function ProjectMedia({ project, priority = false }) {
 function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeGallery, setActiveGallery] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -446,6 +568,24 @@ function App() {
       window.removeEventListener('resize', handleResize);
     };
   }, [isMobileMenuOpen]);
+
+  useEffect(() => {
+    document.body.classList.toggle('gallery-open', Boolean(activeGallery));
+    return () => document.body.classList.remove('gallery-open');
+  }, [activeGallery]);
+
+  useEffect(() => {
+    if (!activeGallery) return undefined;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setActiveGallery(null);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [activeGallery]);
 
   const typingPhrases = [
     'building web apps',
@@ -691,7 +831,13 @@ function App() {
                 </div>
               </div>
               <div className="case-study-frame">
-                <ProjectMedia project={project} priority={index === 0} />
+                <ProjectMedia
+                  project={project}
+                  priority={index === 0}
+                  onOpenGallery={(selectedProject, imageIndex) =>
+                    setActiveGallery({ project: selectedProject, imageIndex })
+                  }
+                />
               </div>
             </article>
           ))}
@@ -782,6 +928,18 @@ function App() {
           </div>
         )}
       </section>
+      {activeGallery && (
+        <ProjectGalleryModal
+          project={activeGallery.project}
+          activeIndex={activeGallery.imageIndex}
+          onSelect={(imageIndex) =>
+            setActiveGallery((current) =>
+              current ? { ...current, imageIndex } : current,
+            )
+          }
+          onClose={() => setActiveGallery(null)}
+        />
+      )}
     </main>
   );
 }

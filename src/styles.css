@@ -6699,3 +6699,299 @@ body {
     height: 225px !important;
   }
 }
+
+
+/* Project gallery modal */
+body.gallery-open {
+  overflow: hidden;
+}
+
+.gallery-trigger {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  cursor: zoom-in;
+}
+
+.single-media-trigger {
+  display: block;
+  width: 100%;
+  background: transparent;
+}
+
+.gallery-trigger:focus-visible {
+  outline: 2px solid rgba(217, 138, 164, 0.72);
+  outline-offset: 4px;
+}
+
+.project-gallery-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 8000;
+  display: grid;
+  place-items: center;
+  padding: clamp(14px, 3vw, 34px);
+  background: rgba(7, 2, 5, 0.74);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.project-gallery-panel {
+  width: min(1120px, 100%);
+  max-height: min(92dvh, 860px);
+  overflow: hidden;
+  border: 1px solid rgba(255, 246, 239, 0.14);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 10% 0, rgba(183, 47, 91, 0.18), transparent 30%),
+    linear-gradient(180deg, rgba(28, 11, 17, 0.98), rgba(12, 5, 8, 0.98));
+  box-shadow:
+    0 34px 100px rgba(0, 0, 0, 0.58),
+    0 0 42px rgba(183, 47, 91, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.project-gallery-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  border-bottom: 1px solid rgba(255, 246, 239, 0.08);
+  padding: 18px clamp(18px, 3vw, 28px);
+}
+
+.project-gallery-kicker {
+  display: block;
+  margin-bottom: 5px;
+  color: rgba(217, 138, 164, 0.86);
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.project-gallery-topbar h3 {
+  margin: 0;
+  font-size: clamp(1.25rem, 3vw, 2rem);
+}
+
+.project-gallery-close {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(255, 246, 239, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 246, 239, 0.055);
+  color: #fff6ef;
+  cursor: pointer;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.project-gallery-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 0;
+  padding: clamp(12px, 2vw, 22px);
+}
+
+.project-gallery-stage img {
+  width: 100%;
+  max-height: min(62dvh, 610px);
+  border: 1px solid rgba(255, 246, 239, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 246, 239, 0.035);
+  object-fit: contain;
+  object-position: top center;
+}
+
+.project-gallery-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border: 1px solid rgba(255, 246, 239, 0.14);
+  border-radius: 999px;
+  background: rgba(18, 7, 11, 0.72);
+  color: #fff6ef;
+  cursor: pointer;
+  font-size: 2.5rem;
+  line-height: 1;
+  transform: translateY(-50%);
+}
+
+.project-gallery-arrow.prev {
+  left: 24px;
+}
+
+.project-gallery-arrow.next {
+  right: 24px;
+}
+
+.project-gallery-thumbs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 0 clamp(18px, 3vw, 28px) 22px;
+}
+
+.project-gallery-thumbs button {
+  flex: 0 0 98px;
+  height: 64px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 246, 239, 0.13);
+  border-radius: 12px;
+  background: rgba(255, 246, 239, 0.04);
+  cursor: pointer;
+  padding: 0;
+  opacity: 0.62;
+}
+
+.project-gallery-thumbs button.is-active {
+  border-color: rgba(217, 138, 164, 0.72);
+  opacity: 1;
+}
+
+.project-gallery-thumbs img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Mobile: keep desktop cards as they are, but web project cards show only the first preview */
+@media (max-width: 560px) {
+  .case-study-media.web-layered .browser-preview.shot-2 {
+    display: none !important;
+  }
+
+  .case-study-media.web-layered .media-stage.web-layered {
+    display: block !important;
+  }
+
+  .case-study-media.web-layered .browser-preview.shot-1 {
+    width: 100% !important;
+  }
+
+  .case-study-media.web-layered .browser-preview.shot-1 .project-image {
+    height: 255px !important;
+    object-fit: cover !important;
+    object-position: top center !important;
+  }
+
+  .project-gallery-overlay {
+    padding: 10px;
+  }
+
+  .project-gallery-panel {
+    max-height: 94dvh;
+    border-radius: 22px;
+  }
+
+  .project-gallery-topbar {
+    padding: 15px 16px;
+  }
+
+  .project-gallery-close {
+    width: 38px;
+    height: 38px;
+    font-size: 1.65rem;
+  }
+
+  .project-gallery-stage {
+    padding: 10px;
+  }
+
+  .project-gallery-stage img {
+    max-height: 58dvh;
+    border-radius: 14px;
+  }
+
+  .project-gallery-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 2rem;
+  }
+
+  .project-gallery-arrow.prev {
+    left: 14px;
+  }
+
+  .project-gallery-arrow.next {
+    right: 14px;
+  }
+
+  .project-gallery-thumbs {
+    padding: 0 12px 16px;
+  }
+
+  .project-gallery-thumbs button {
+    flex-basis: 78px;
+    height: 52px;
+  }
+}
+
+
+/* FINAL: gallery clickability without changing original project layouts */
+.browser-preview.gallery-trigger,
+.desktop-window-preview.gallery-trigger,
+.project-image.gallery-trigger {
+  cursor: zoom-in;
+}
+
+.browser-preview.gallery-trigger,
+.desktop-window-preview.gallery-trigger {
+  padding: 0;
+  text-align: initial;
+}
+
+.project-image.gallery-trigger {
+  border: 1px solid rgba(255, 246, 239, 0.15);
+}
+
+/* Restore mobile app previews exactly like the pre-gallery layout */
+.media-stage.phone-pair .project-image.gallery-trigger {
+  width: min(205px, 46%) !important;
+  aspect-ratio: 9 / 19.5 !important;
+  height: auto !important;
+  border-radius: 30px !important;
+  padding: 7px !important;
+  background: #070407 !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+}
+
+.media-stage.phone-pair .project-image.gallery-trigger.shot-1 {
+  transform: translateY(-20px) rotate(-1deg) !important;
+}
+
+.media-stage.phone-pair .project-image.gallery-trigger.shot-2 {
+  transform: translateY(28px) rotate(1deg) !important;
+}
+
+.case-study:hover .media-stage.phone-pair .project-image.gallery-trigger.shot-1 {
+  transform: translateY(-24px) rotate(-1deg) scale(1.012) !important;
+}
+
+.case-study:hover .media-stage.phone-pair .project-image.gallery-trigger.shot-2 {
+  transform: translateY(24px) rotate(1deg) scale(1.012) !important;
+}
+
+@media (max-width: 900px) {
+  .media-stage.phone-pair .project-image.gallery-trigger {
+    width: min(190px, 47%) !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .media-stage.phone-pair .project-image.gallery-trigger {
+    width: min(168px, 48%) !important;
+  }
+}
