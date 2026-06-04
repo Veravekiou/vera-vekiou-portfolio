@@ -2,10 +2,6 @@
 
 Personal portfolio website for Vera Vekiou, presenting selected web, mobile, and desktop projects in a clean single-page experience.
 
-## Live Demo
-
-![Portfolio preview](./public/og-preview.jpg)
-
 ## About
 
 This project is a personal portfolio built to showcase featured work, technical skills, and contact details in one modern, responsive interface.
