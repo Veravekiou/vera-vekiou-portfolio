@@ -28,14 +28,14 @@ const projects = [
     mediaClass: 'plango-layered',
     images: [
       {
-        src: '/projects/plango-preview.png',
+        src: '/projects/plango-preview.webp',
         alt: 'PlanGo travel planning homepage with hero section and popular destinations',
         fit: 'cover',
         position: 'top center',
         label: 'plango.app',
       },
       {
-        src: '/projects/plango-generate-trip.png',
+        src: '/projects/plango-generate-trip.webp',
         alt: 'PlanGo generate trip destination step screen',
         fit: 'contain',
         position: 'top center',
@@ -44,35 +44,35 @@ const projects = [
     ],
     galleryImages: [
       {
-        src: '/projects/plango-preview.png',
+        src: '/projects/plango-preview.webp',
         alt: 'PlanGo travel planning homepage with hero section and popular destinations',
         fit: 'cover',
         position: 'top center',
         label: 'home',
       },
       {
-        src: '/projects/plango-generate-trip.png',
+        src: '/projects/plango-generate-trip.webp',
         alt: 'PlanGo generate trip destination step screen',
         fit: 'contain',
         position: 'top center',
         label: 'generate trip',
       },
       {
-        src: '/projects/plango-my-trips.png',
+        src: '/projects/plango-my-trips.webp',
         alt: 'PlanGo my trips page with saved trip cards and filters',
         fit: 'contain',
         position: 'top center',
         label: 'my trips',
       },
       {
-        src: '/projects/plango-profile-map.png',
+        src: '/projects/plango-profile-map.webp',
         alt: 'PlanGo profile and journey map screen',
         fit: 'contain',
         position: 'top center',
         label: 'profile map',
       },
       {
-        src: '/projects/plango-trip-details-map.png',
+        src: '/projects/plango-trip-details-map.webp',
         alt: 'PlanGo trip details page with itinerary and route map',
         fit: 'contain',
         position: 'top center',
@@ -94,13 +94,13 @@ const projects = [
     mediaLayout: 'phone-pair',
     images: [
       {
-        src: '/projects/theatre-home.jpg',
+        src: '/projects/theatre-home.webp',
         alt: 'Theater Booking App home screen with now showing theater production',
         fit: 'cover',
         position: 'top center',
       },
       {
-        src: '/projects/theatre-booking.jpg',
+        src: '/projects/theatre-booking.webp',
         alt: 'Theater Booking App seat selection and ticket booking screen',
         fit: 'cover',
         position: 'top center',
@@ -109,35 +109,35 @@ const projects = [
     galleryMode: 'mobile-mockup',
     galleryImages: [
       {
-        src: '/projects/theatre-home.jpg',
+        src: '/projects/theatre-home.webp',
         alt: 'Theater Booking App home screen with now showing theater production',
         fit: 'contain',
         position: 'top center',
         label: 'home',
       },
       {
-        src: '/projects/theatre-booking.jpg',
+        src: '/projects/theatre-booking.webp',
         alt: 'Theater Booking App seat selection and ticket booking screen',
         fit: 'contain',
         position: 'top center',
         label: 'booking',
       },
       {
-        src: '/projects/theatre-login.png',
+        src: '/projects/theatre-login.webp',
         alt: 'Theater Booking App login screen',
         fit: 'contain',
         position: 'top center',
         label: 'login',
       },
       {
-        src: '/projects/theatre-showtimes.png',
+        src: '/projects/theatre-showtimes.webp',
         alt: 'Theater Booking App showtimes screen',
         fit: 'contain',
         position: 'top center',
         label: 'showtimes',
       },
       {
-        src: '/projects/theatre-profile.png',
+        src: '/projects/theatre-profile.webp',
         alt: 'Theater Booking App profile and reservation history screen',
         fit: 'contain',
         position: 'top center',
@@ -161,7 +161,7 @@ const projects = [
     windowLabel: 'Travel Agency System',
     images: [
       {
-        src: '/projects/travel-agency-dashboard.png',
+        src: '/projects/travel-agency-dashboard.webp',
         alt: 'Travel Agency Management System dashboard screen',
         fit: 'contain',
         position: 'top center',
@@ -169,28 +169,28 @@ const projects = [
     ],
     galleryImages: [
       {
-        src: '/projects/travel-agency-dashboard.png',
+        src: '/projects/travel-agency-dashboard.webp',
         alt: 'Travel Agency Management System dashboard screen',
         fit: 'contain',
         position: 'top center',
         label: 'dashboard',
       },
       {
-        src: '/projects/travel-agency-customers.png',
+        src: '/projects/travel-agency-customers.webp',
         alt: 'Travel Agency Management System customer information table',
         fit: 'contain',
         position: 'top center',
         label: 'customers',
       },
       {
-        src: '/projects/travel-agency-bookings.png',
+        src: '/projects/travel-agency-bookings.webp',
         alt: 'Travel Agency Management System bookings screen',
         fit: 'contain',
         position: 'top center',
         label: 'bookings',
       },
       {
-        src: '/projects/travel-agency-trips.png',
+        src: '/projects/travel-agency-trips.webp',
         alt: 'Travel Agency Management System trips screen',
         fit: 'contain',
         position: 'top center',
@@ -213,14 +213,14 @@ const projects = [
     mediaClass: 'petplanet-layered',
     images: [
       {
-        src: '/projects/petplanet-home.png',
+        src: '/projects/petplanet-home.webp',
         alt: 'PetPlanet homepage hero section',
         fit: 'cover',
         position: 'top center',
         label: 'homepage',
       },
       {
-        src: '/projects/petplanet-products.png',
+        src: '/projects/petplanet-products.webp',
         alt: 'PetPlanet cats products page',
         fit: 'contain',
         position: 'top center',
@@ -229,28 +229,28 @@ const projects = [
     ],
     galleryImages: [
       {
-        src: '/projects/petplanet-home.png',
+        src: '/projects/petplanet-home.webp',
         alt: 'PetPlanet homepage hero section',
         fit: 'contain',
         position: 'top center',
         label: 'homepage',
       },
       {
-        src: '/projects/petplanet-products.png',
+        src: '/projects/petplanet-products.webp',
         alt: 'PetPlanet cats products page with product dropdown',
         fit: 'contain',
         position: 'top center',
         label: 'products',
       },
       {
-        src: '/projects/petplanet-adopt.png',
+        src: '/projects/petplanet-adopt.webp',
         alt: 'PetPlanet adopt now page with pet cards',
         fit: 'contain',
         position: 'top center',
         label: 'adopt',
       },
       {
-        src: '/projects/petplanet-about.png',
+        src: '/projects/petplanet-about.webp',
         alt: 'PetPlanet about us page',
         fit: 'contain',
         position: 'top center',
@@ -273,13 +273,13 @@ const projects = [
     mediaLayout: 'phone-pair',
     images: [
       {
-        src: '/projects/fixmycity-home.png',
+        src: '/projects/fixmycity-home.webp',
         alt: 'FixMyCity mobile app home dashboard screen',
         fit: 'cover',
         position: 'top center',
       },
       {
-        src: '/projects/fixmycity-report.png',
+        src: '/projects/fixmycity-report.webp',
         alt: 'FixMyCity mobile app new report form screen',
         fit: 'cover',
         position: 'top center',
@@ -288,35 +288,35 @@ const projects = [
     galleryMode: 'mobile-mockup',
     galleryImages: [
       {
-        src: '/projects/fixmycity-home.png',
+        src: '/projects/fixmycity-home.webp',
         alt: 'FixMyCity mobile app home dashboard screen',
         fit: 'contain',
         position: 'top center',
         label: 'home',
       },
       {
-        src: '/projects/fixmycity-report.png',
+        src: '/projects/fixmycity-report.webp',
         alt: 'FixMyCity mobile app new report form screen',
         fit: 'contain',
         position: 'top center',
         label: 'new report',
       },
       {
-        src: '/projects/fixmycity-report-details.png',
+        src: '/projects/fixmycity-report-details.webp',
         alt: 'FixMyCity report details screen',
         fit: 'contain',
         position: 'top center',
         label: 'details',
       },
       {
-        src: '/projects/fixmycity-my-reports.png',
+        src: '/projects/fixmycity-my-reports.webp',
         alt: 'FixMyCity my reports list screen',
         fit: 'contain',
         position: 'top center',
         label: 'my reports',
       },
       {
-        src: '/projects/fixmycity-map-location.png',
+        src: '/projects/fixmycity-map-location.webp',
         alt: 'FixMyCity map location picker screen',
         fit: 'contain',
         position: 'top center',
@@ -957,7 +957,7 @@ function App() {
         <div className="centered-hero-avatar" aria-label="Vera Vekiou portrait">
           <img
             className="avatar home-center-avatar"
-            src="/avatar.jpg"
+            src="/avatar.webp"
             alt="Vera Vekiou portrait"
           />
         </div>
