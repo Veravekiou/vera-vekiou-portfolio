@@ -847,7 +847,7 @@ function App() {
     profile.email && {
       href: emailHref,
       icon: Mail,
-      label: 'Send email',
+      label: profile.email,
     },
     profile.github && {
       href: profile.github,
@@ -1150,15 +1150,17 @@ function App() {
                   key={link.label}
                 >
                   <link.icon size={24} aria-hidden="true" />
-                  <span className="social-label">
-                    {link.label === 'Send email' ? 'Email' : link.label}
+                  <span className={`social-label${link.label.includes('@') ? ' email-label' : ''}`}>
+                    {link.label}
                   </span>
                 </a>
               ))}
             </div>
-            <a className="get-in-touch-email" href={`mailto:${profile.email}`}>
-              {profile.email}
-            </a>
+            {profile.email && (
+              <a className="get-in-touch-email" href={`mailto:${profile.email}`}>
+                {profile.email}
+              </a>
+            )}
           </div>
         )}
       </section>
