@@ -5877,7 +5877,8 @@ body {
   }
 
   .mobile-menu-panel a:hover,
-  .mobile-menu-panel a:focus-visible {
+  .mobile-menu-panel a:focus-visible,
+  .mobile-menu-panel a.active {
     color: rgba(255, 246, 239, 0.78);
   }
 

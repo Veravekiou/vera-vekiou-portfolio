@@ -725,18 +725,47 @@ function ProjectMedia({ project, priority = false, onOpenGallery }) {
 }
 
 function App() {
+  const navItems = [
+    { id: 'top', label: 'Home' },
+    { id: 'about', label: 'About' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'contact', label: 'Contact' },
+  ];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('top');
   const [activeGallery, setActiveGallery] = useState(null);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const updateHeaderState = () => {
       setIsScrolled(window.scrollY > 16);
+
+      const scrollMarker = window.scrollY + 160;
+      let nextActiveSection = 'top';
+
+      navItems.forEach(({ id }) => {
+        const section = document.getElementById(id);
+
+        if (section && scrollMarker >= section.offsetTop) {
+          nextActiveSection = id;
+        }
+      });
+
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        nextActiveSection = 'contact';
+      }
+
+      setActiveSection(nextActiveSection);
     };
 
-    handleScroll();
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    updateHeaderState();
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
+    window.addEventListener('resize', updateHeaderState);
+    return () => {
+      window.removeEventListener('scroll', updateHeaderState);
+      window.removeEventListener('resize', updateHeaderState);
+    };
   }, []);
 
   useEffect(() => {
@@ -811,9 +840,7 @@ function App() {
   }, [typedText, typingIndex, isDeleting]);
 
   const emailHref = profile.email
-    ? `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
-        profile.email,
-      )}&su=${encodeURIComponent('Portfolio contact - Vera Vekiou')}`
+    ? `mailto:${profile.email}?subject=${encodeURIComponent('Portfolio contact - Vera Vekiou')}`
     : '';
 
   const contactLinks = [
@@ -845,7 +872,10 @@ function App() {
           className="brand"
           href="#top"
           aria-label="Portfolio home"
-          onClick={() => setIsMobileMenuOpen(false)}
+          onClick={() => {
+            setActiveSection('top');
+            setIsMobileMenuOpen(false);
+          }}
         >
           <span className="brand-mark brand-word" aria-hidden="true">
             <span className="brand-letter">V</span>
@@ -855,11 +885,20 @@ function App() {
           </span>
         </a>
         <nav className="nav-links" aria-label="Main navigation">
-          <a className="active" href="#top" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
-          <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
-          <a href="#projects" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
-          <a href="#skills" onClick={() => setIsMobileMenuOpen(false)}>Skills</a>
-          <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+          {navItems.map((item) => (
+            <a
+              className={activeSection === item.id ? 'active' : ''}
+              href={`#${item.id}`}
+              aria-current={activeSection === item.id ? 'page' : undefined}
+              key={item.id}
+              onClick={() => {
+                setActiveSection(item.id);
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
 
         <a
@@ -897,11 +936,20 @@ function App() {
           aria-label="Mobile navigation"
           aria-hidden={!isMobileMenuOpen}
         >
-          <a href="#top" onClick={() => setIsMobileMenuOpen(false)}>Home</a>
-          <a href="#about" onClick={() => setIsMobileMenuOpen(false)}>About</a>
-          <a href="#projects" onClick={() => setIsMobileMenuOpen(false)}>Projects</a>
-          <a href="#skills" onClick={() => setIsMobileMenuOpen(false)}>Skills</a>
-          <a href="#contact" onClick={() => setIsMobileMenuOpen(false)}>Contact</a>
+          {navItems.map((item) => (
+            <a
+              className={activeSection === item.id ? 'active' : ''}
+              href={`#${item.id}`}
+              aria-current={activeSection === item.id ? 'page' : undefined}
+              key={item.id}
+              onClick={() => {
+                setActiveSection(item.id);
+                setIsMobileMenuOpen(false);
+              }}
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
       </header>
 
