@@ -22,7 +22,7 @@ const profile = {
 const projects = [
   {
     title: 'PlanGo',
-    type: 'Full-stack thesis web app',
+    type: 'Full-stack web app',
     mediaType: 'desktop',
     mediaLayout: 'web-layered',
     mediaClass: 'plango-layered',
