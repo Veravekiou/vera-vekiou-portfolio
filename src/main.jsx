@@ -12,11 +12,11 @@ import './styles.css';
 
 const profile = {
   name: 'Vera Vekiou',
-  role: 'Junior Software Engineer',
+  role: '',
   email: 'vvekiou@gmail.com',
   github: 'https://github.com/Veravekiou',
   linkedin: 'https://www.linkedin.com/in/varvara-vekiou/',
-  cv: '/resume.pdf',
+  cv: '',
 };
 
 const projects = [
@@ -336,15 +336,15 @@ const projects = [
 const strengths = [
   {
     title: 'Practical builder',
-    text: 'Creating functional web, mobile, and desktop products with real-world logic.',
+    text: 'Turning ideas into functional projects with real features.',
   },
   {
-    title: 'Problem solver',
-    text: 'Combining clean interfaces with structured, reliable back-end development.',
+    title: 'User-focused',
+    text: 'Creating simple flows and clear digital experiences.',
   },
   {
-    title: 'Eager learner',
-    text: 'Growing through hands-on projects, feedback, and continuous iteration.',
+    title: 'Always improving',
+    text: 'Learning through real development work and iteration.',
   },
 ];
 
@@ -469,9 +469,9 @@ const techStack = [
 ];
 
 
-const heroHighlights = ['BSc Computer Science', 'Web · Mobile · Desktop', 'Open to junior roles'];
+const heroHighlights = ['5 Projects', 'Web · Mobile · Desktop', 'Open to junior roles'];
 
-const heroFocus = ['React', 'PHP / MySQL', 'Java', 'Firebase'];
+const heroFocus = ['React', 'PHP / MySQL', 'Firebase', 'Java'];
 
 const heroMiniProjects = ['PlanGo', 'Theater Booking', 'FixMyCity'];
 
@@ -803,10 +803,10 @@ function App() {
   }, [activeGallery]);
 
   const typingPhrases = [
-    'building full-stack web apps',
+    'building web apps',
     'building mobile apps',
     'designing clean interfaces',
-    'working with SQL and databases',
+    'working with databases',
   ];
   const [typedText, setTypedText] = useState('');
   const [typingIndex, setTypingIndex] = useState(0);
@@ -848,11 +848,6 @@ function App() {
       href: emailHref,
       icon: Mail,
       label: profile.email,
-    },
-    profile.cv && {
-      href: profile.cv,
-      icon: FileText,
-      label: 'Resume',
     },
     profile.github && {
       href: profile.github,
@@ -908,7 +903,7 @@ function App() {
 
         <a
           className="nav-resume"
-          href={profile.cv}
+          href="/resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Open resume"
@@ -970,11 +965,11 @@ function App() {
         <div className="hero-copy centered-hero-copy">
           <p className="eyebrow">
             <Sparkles size={15} aria-hidden="true" />
-            {profile.role}
+            Junior Software Engineer
           </p>
           <h1 className="hero-title">
             <span className="hero-greeting">HI, MY NAME IS</span>
-            <span>{profile.name.toUpperCase()}</span>
+            <span>VERA VEKIOU</span>
           </h1>
 
           <p className="hero-typing-line" aria-live="polite">
@@ -1003,21 +998,21 @@ function App() {
         </div>
 
         <div className="about-statement-block">
-          <p className="about-location">Based in Athens, Greece.</p>
+          <p className="about-location">Based in Greece.</p>
           <p className="about-big-statement">
-            Computer Science graduate with hands-on experience in
-            <span> full-stack development</span>, <span>clean UI design</span>, and
-            <span> practical product building</span>.
+            I build fast, modern digital products with
+            <span> clean UIs</span>, <span>solid back-end logic</span>, and
+            <span> real results</span>.
           </p>
           <p className="about-support-text">
-            I develop web, mobile, and desktop applications with a strong focus on
-            database design, REST APIs, and user-centered functionality.
+            I focus on practical applications that combine clear interfaces,
+            structured code, and features that feel useful from the first click.
           </p>
           <div className="about-focus-line" aria-label="Development focus areas">
             <span>Web</span>
             <span>Mobile</span>
             <span>Desktop</span>
-            <span>SQL</span>
+            <span>Databases</span>
           </div>
         </div>
       </section>
